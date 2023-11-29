@@ -43,7 +43,7 @@ describe('Expense Service', function ()  {
       await service.addExpense(category_id, amount, description);
       const expenses = await service.getExpenses();
     
-
+      console.log(expenses); // Log the expenses for debugging
     
       // Find an expense that matches the criteria
       const addedExpense = expenses.find(exp => exp.id === category_id && exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
@@ -57,13 +57,11 @@ describe('Expense Service', function ()  {
     const category_id = 2; // Weekly
     const amount = 150.00;
     const description = 'apple'
-    
-    await service.addExpense(category_id, amount, description);
-    const expenses = await service.getExpenses();
-    
-        // console.log(expenses); 
 
-    const addedExpense = expenses.find(exp =>  exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
+    await service.addExpense(category_id, amount);
+    const expenses = await service.getExpenses();
+
+    const addedExpense = expenses.find(exp => exp.id === category_id && exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
     assert(addedExpense, "Weekly expense should be added");
   });
 
@@ -73,10 +71,10 @@ describe('Expense Service', function ()  {
     const amount = 50.00;
     const description = 'pie'
 
-    await service.addExpense(category_id, amount, description);
+    await service.addExpense(category_id, amount);
     const expenses = await service.getExpenses();
 
-    const addedExpense = expenses.find(exp =>  exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
+    const addedExpense = expenses.find(exp => exp.id === category_id && exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
     assert(addedExpense, "Weekday expense should be added");
   });
 
@@ -87,10 +85,10 @@ describe('Expense Service', function ()  {
     const amount = 75.00;
     const description = 'pie'
 
-    await service.addExpense(category_id, amount, description);
+    await service.addExpense(category_id, amount);
     const expenses = await service.getExpenses();
 
-    const addedExpense = expenses.find(exp =>  exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
+    const addedExpense = expenses.find(exp => exp.id === category_id && exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
     assert(addedExpense, "Weekend expense should be added");
   });
 
@@ -104,7 +102,7 @@ describe('Expense Service', function ()  {
     await service.addExpense(category_id, amount, description);
     const expenses = await service.getExpenses();
 
-    const addedExpense = expenses.find(exp => exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
+    const addedExpense = expenses.find(exp => exp.category_id === category_id && exp.amount === amount.toFixed(2) && exp.description === description);
     assert(addedExpense, "Once-off expense should be added");
   });
 
