@@ -1,0 +1,11 @@
+<form action="/add-expense" method="post">
+    <label for="category">Category:</label>
+    <select name="category_id" id="category">
+        <!-- Dynamically load categories from your database -->
+    </select>
+
+    <label for="amount">Amount:</label>
+    <input type="number" name="amount" id="amount" required>
+
+    <button type="submit">Add Expense</button>
+</form>

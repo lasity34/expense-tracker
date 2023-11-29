@@ -1,0 +1,117 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    background-color: #333;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+section {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Add Expense Form Styles */
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form div {
+    margin-bottom: 10px;
+}
+
+form div label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form div input[type="number"],
+form div select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background:  #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background: #555;
+}
+
+
+/* styles.css - add this to your existing CSS file */
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    background: #6c757d; /* A gray color, change as needed */
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.back-button:hover {
+    background-color: #5a6268; /* Slightly darker on hover */
+}
+
+
+.add-expenses-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,0 +1,26 @@
+{{!-- views/add-expense.handlebars --}}
+<div class="add-expenses-container">
+<h1>Add Expenses</h1>
+<form action="/add-expense" method="post">
+    <div>
+        <label for="category">Category:</label>
+        <select name="category_id" id="category">
+            <!-- Dynamically load categories -->
+            <option value="1">Monthly</option>
+            <option value="2">Weekly</option>
+            <!-- Add other categories here -->
+        </select>
+    </div>
+    <div>
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" required>
+    </div>
+    <div>
+    <label for="description">Description:</label>
+    <input type="text" name="description" id="description" required>
+</div>
+
+    <button type="submit">Add Expense</button>
+</form>
+<a href="/" class="back-button">Back to Dashboard</a>
+</div>

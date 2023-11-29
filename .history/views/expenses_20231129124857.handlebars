@@ -1,0 +1,32 @@
+<h2 class="expenses-title">All Expenses</h2>
+
+
+{{!-- description, date, category, amount and delete added --}}
+<table class="expenses-table">
+    <thead class="expenses-thead">
+        <tr class="expenses-header-row">
+            <th class="expenses-header">Description</th>
+            <th class="expenses-header">Date</th>
+            <th class="expenses-header">Category</th>
+            <th class="expenses-header">Amount</th>
+            <th class="expenses-header">Actions</th>
+        </tr>
+    </thead>
+    <tbody class="expenses-tbody">
+        {{#each expenses}}
+            <tr class="expenses-row">
+                <td class="expenses-description">{{this.description}}</td>
+                <td class="expenses-date">{{this.date_added}}</td>
+                <td class="expenses-category">{{this.category_name}}</td>
+                <td class="expenses-amount">{{this.amount}}</td>
+                <td class="expenses-actions">
+                    <a href="/delete-expense/{{this.id}}" class="delete-expense">Delete</a>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+<div class="back-to-dashboard-btn_container">
+<a href="/" class="back-to-dashboard-btn">Back to Dashboard</a>
+
+</div>

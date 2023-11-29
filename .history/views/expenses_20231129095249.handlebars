@@ -1,0 +1,20 @@
+<h2>All Expenses</h2>
+
+<!-- Optional: Add a filter form here -->
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Actions</th>
+    </tr>
+    {{#each expenses}}
+    <tr>
+        <td>{{this.date_added}}</td>
+        <td>{{this.category_name}}</td>
+        <td>{{this.amount}}</td>
+        <td><a href="/delete-expense/{{this.id}}">Delete</a></td>
+    </tr>
+    {{/each}}
+</table>
