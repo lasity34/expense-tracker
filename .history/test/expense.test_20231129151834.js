@@ -150,25 +150,3 @@ describe('deleteExpense', () => {
 });
 
 
-describe('getFilteredExpenses', () => {
-  it('should filter expenses by description', async () => {
-      
-      await service.addExpense(1, 100.00, 'pie');
-
-      const filteredExpenses = await service.getFilteredExpenses({ description: 'pie' });
-      assert(filteredExpenses.length === 1, "Should filter by description");
-  });
-
-});
-
-
-describe('getDescriptionsLike', () => {
-  it('should retrieve descriptions matching a search term', async () => {
-      // Add an expense with a unique description
-      await service.addExpense(1, 100.00, 'Special Description');
-
-      const descriptions = await service.getDescriptionsLike('Special');
-      assert(descriptions.some(desc => desc.description === 'Special Description'), "Should match 'Special Description'");
-  });
-});
-

@@ -91,7 +91,7 @@ button[type="submit"]:hover {
 }
 
 
-/* expenses */
+/* styles.css - add this to your existing CSS file */
 
 .back-button {
     display: inline-block;
@@ -202,44 +202,25 @@ button[type="submit"]:hover {
 
 /* category checkboxes */
 
-.expenses-filter-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-
-/* Style for Description Autocomplete */
-.description-autocomplete {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensures padding doesn't affect width */
-}
-
-/* Style for Category Checkboxes */
 .category-checkboxes {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 10px; /* Adjust the space between checkboxes */
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    border: 1px solid #ddd; /* Optional border */
+    border-radius: 5px; /* Optional rounded corners */
+    margin-bottom: 20px; /* Space below the checkbox container */
 }
 
 .checkbox-container {
     display: flex;
-    align-items: center;
+    align-items: center; /* Aligns the label and checkbox vertically */
 }
 
 .checkbox-container input[type="checkbox"] {
-    margin-right: 5px;
+    margin-right: 5px; /* Space between checkbox and label */
 }
-/* add expenses error */
+
 
 .error-message {
     color: white;

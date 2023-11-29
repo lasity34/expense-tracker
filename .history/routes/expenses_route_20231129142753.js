@@ -4,43 +4,15 @@ function expensesRouter(expenseService) {
     const router = express.Router();
 
     // Dashboard route
-    router.get('/', async (req, res) => {
-        try {
-            const categories = await expenseService.getCategories();
-            const expenses = await expenseService.getAllExpenses();
-            let categoryTotals = {};
-    
-            expenses.forEach(expense => {
-                if (!categoryTotals[expense.category_name]) {
-                    categoryTotals[expense.category_name] = 0;
-                }
-                categoryTotals[expense.category_name] += parseFloat(expense.amount);
-            });
-    
-            const totalAmount = expenses.reduce((total, expense) => total + parseFloat(expense.amount), 0);
-    
-            res.render('dashboard', { categories, categoryTotals, totalAmount });
-        } catch (error) {
-            console.error('Error fetching expenses:', error);
-            res.redirect('/');
-        }
+    router.get('/', (req, res) => {
+        res.render('dashboard');
     });
-    
 
 
 
     // Add expense
     router.post('/add-expense', async (req, res) => {
         const { category_id, amount, description } = req.body;
-    
-        if (!description || !amount) {
-            // Handle the error, possibly by re-rendering the form with an error message
-            const categories = await expenseService.getCategories();
-            const errorMessage = "Both amount and description are required.";
-            res.render('add-expense', { categories, errorMessage });
-            return;
-        }
-    
         try {
             await expenseService.addExpense(category_id, amount, description);
             res.redirect('/');
@@ -49,7 +21,6 @@ function expensesRouter(expenseService) {
             res.redirect('/');
         }
     });
-    
 
 
     
@@ -72,15 +43,16 @@ function expensesRouter(expenseService) {
         try {
             const filterParams = {
                 description: req.query.description,
-                categories: req.query.category, // This can be an array
+                category: req.query.category,
             };
     
-            const categories = await expenseService.getCategories();
             const expenses = await expenseService.getFilteredExpenses(filterParams);
+            
+            // Debugging: Log expenses and categories
+            console.log('Expenses:', expenses);
+            console.log('Categories:', categories);
     
-            const totalAmount = expenses.reduce((total, expense) => total + parseFloat(expense.amount), 0);
-    
-            res.render('expenses', { expenses, categories, totalAmount });
+            res.render('expenses', { expenses, categories }); // Make sure to pass 'categories'
         } catch (error) {
             console.error('Error retrieving filtered expenses:', error);
             res.redirect('/');

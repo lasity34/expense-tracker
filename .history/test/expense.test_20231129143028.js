@@ -104,7 +104,10 @@ describe('Expense Service', function ()  {
     const addedExpense = expenses.find(exp => exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
     assert(addedExpense, "Once-off expense should be added");
   });
+
+
   
+    
   
   });
     // Test for getExpenses
@@ -118,57 +121,3 @@ describe('Expense Service', function ()  {
     // Add more tests as needed for other service functions
 
 });
-
-describe('getAllExpenses', () => {
-  it('should retrieve all expenses', async () => {
-      // Add some expenses for testing
-      await service.addExpense(1, 100.00, 'Test Expense 1');
-      await service.addExpense(2, 50.00, 'Test Expense 2');
-
-      const expenses = await service.getAllExpenses();
-      assert(Array.isArray(expenses) && expenses.length >= 2, "Should retrieve all expenses");
-  });
-});
-
-describe('getCategories', () => {
-  it('should retrieve all categories', async () => {
-      const categories = await service.getCategories();
-      assert(Array.isArray(categories) && categories.length >= 6, "Should retrieve all categories");
-  });
-});
-
-
-describe('deleteExpense', () => {
-  it('should delete an expense', async () => {
-      const addedExpense = await service.addExpense(1, 100.00, 'Delete Test');
-      await service.deleteExpense(addedExpense.id);
-
-      const expenses = await service.getExpenses();
-      const found = expenses.find(exp => exp.id === addedExpense.id);
-      assert(!found, "Expense should be deleted");
-  });
-});
-
-
-describe('getFilteredExpenses', () => {
-  it('should filter expenses by description', async () => {
-      
-      await service.addExpense(1, 100.00, 'pie');
-
-      const filteredExpenses = await service.getFilteredExpenses({ description: 'pie' });
-      assert(filteredExpenses.length === 1, "Should filter by description");
-  });
-
-});
-
-
-describe('getDescriptionsLike', () => {
-  it('should retrieve descriptions matching a search term', async () => {
-      // Add an expense with a unique description
-      await service.addExpense(1, 100.00, 'Special Description');
-
-      const descriptions = await service.getDescriptionsLike('Special');
-      assert(descriptions.some(desc => desc.description === 'Special Description'), "Should match 'Special Description'");
-  });
-});
-

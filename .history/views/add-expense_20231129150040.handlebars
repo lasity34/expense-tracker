@@ -28,7 +28,7 @@
   </form>
   <a href="/" class="back-button">Back to Dashboard</a>
 </div>
-<div class="error-message" ></div>
+<div class="error-message" style="display: none;"></div>
 
 
 <script>
@@ -45,7 +45,7 @@
                 errorMessage += 'Please add description ';
             }
             if (!amount) {
-                errorMessage += 'and Amount is required. ';
+                errorMessage += 'Amount is required. ';
             }
 
             if (errorMessage) {
@@ -71,7 +71,7 @@
         if (errorMessageDiv && errorMessageDiv.textContent.trim()) {
             setTimeout(() => {
                 errorMessageDiv.style.display = 'none';
-            }, 3000);
+            }, 5000);
         }
     });
 </script>

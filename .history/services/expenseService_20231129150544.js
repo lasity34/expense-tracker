@@ -32,25 +32,6 @@ function expenseService(db) {
             throw error;
         }
     }
-
-
-    async function getAllExpenses() {
-        try {
-            const expenses = await db.any(`
-                SELECT expenses.id, expenses.amount, expenses.date_added, expenses.description, categories.name AS category_name
-                FROM expenses
-                JOIN categories ON expenses.category_id = categories.id`);
-    
-            expenses.forEach(expense => {
-                expense.date_added = moment(expense.date_added).format('YYYY-MM-DD HH:mm:ss');
-            });
-    
-            return expenses;
-        } catch (error) {
-            throw error;
-        }
-    }
-    
     
     async function getCategories() {
         try {
@@ -118,7 +99,6 @@ function expenseService(db) {
     return {
         addExpense,
         getExpenses,
-        getAllExpenses,
         getCategories,
         deleteExpense,
         getFilteredExpenses,

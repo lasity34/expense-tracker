@@ -118,7 +118,6 @@ function expenseService(db) {
     return {
         addExpense,
         getExpenses,
-        getAllExpenses,
         getCategories,
         deleteExpense,
         getFilteredExpenses,

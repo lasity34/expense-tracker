@@ -23,8 +23,10 @@ function expenseService(db) {
                 JOIN categories ON expenses.category_id = categories.id
                 ORDER BY expenses.id DESC`);
     
+            // Format date for each expense using moment.js
             expenses.forEach(expense => {
-                expense.date_added = moment(expense.date_added).format('YYYY-MM-DD HH:mm:ss');
+                expense.date_added = moment().format('YYYY-MM-DD HH:mm:ss');
+                ;
             });
     
             return expenses;
@@ -33,29 +35,10 @@ function expenseService(db) {
         }
     }
 
-
-    async function getAllExpenses() {
-        try {
-            const expenses = await db.any(`
-                SELECT expenses.id, expenses.amount, expenses.date_added, expenses.description, categories.name AS category_name
-                FROM expenses
-                JOIN categories ON expenses.category_id = categories.id`);
-    
-            expenses.forEach(expense => {
-                expense.date_added = moment(expense.date_added).format('YYYY-MM-DD HH:mm:ss');
-            });
-    
-            return expenses;
-        } catch (error) {
-            throw error;
-        }
-    }
-    
-    
     async function getCategories() {
         try {
             const categories = await db.any('SELECT * FROM categories ORDER BY id');
-          
+            console.log(categories); // Temporary log to check output
             return categories;
         } catch (error) {
             throw error;
@@ -73,25 +56,17 @@ function expenseService(db) {
     async function getFilteredExpenses(filterParams) {
         try {
             let query = 'SELECT expenses.*, categories.name AS category_name FROM expenses JOIN categories ON expenses.category_id = categories.id WHERE 1=1';
-            const queryParams = [];
-            let paramCounter = 1;
+        const queryParams = [];
     
             if (filterParams.description) {
-                query += ` AND description ILIKE $${paramCounter}`;
+                query += ' AND description ILIKE $1';
                 queryParams.push(`%${filterParams.description}%`);
-                paramCounter++;
             }
-    
-            if (filterParams.categories && filterParams.categories.length > 0) {
-                // Ensure categories is an array and format it for PostgreSQL
-                let categoryArray = filterParams.categories;
-                if (!Array.isArray(categoryArray)) {
-                    categoryArray = [categoryArray];
-                }
-                query += ` AND category_id = ANY($${paramCounter}::int[])`;
-                queryParams.push(`{${categoryArray.join(',')}}`);
-                paramCounter++;
+            if (filterParams.category) {
+                query += ' AND category_id = $1';
+                queryParams.push(filterParams.category);
             }
+           
     
             const expenses = await db.any(query, queryParams);
             return expenses;
@@ -99,9 +74,6 @@ function expenseService(db) {
             throw error;
         }
     }
-    
-    
-    
 
 // autocomplete filter
     async function getDescriptionsLike(search) {
@@ -118,7 +90,6 @@ function expenseService(db) {
     return {
         addExpense,
         getExpenses,
-        getAllExpenses,
         getCategories,
         deleteExpense,
         getFilteredExpenses,

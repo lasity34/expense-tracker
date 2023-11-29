@@ -16,25 +16,21 @@
     </div>
     <div>
       <label for="description">Description:</label>
-      <input type="text" name="description" id="description"  />
+      <input type="text" name="description" id="description" required />
     </div>
 
     <div>
       <label for="amount">Amount:</label>
-      <input type="number" name="amount" id="amount"  />
+      <input type="number" name="amount" id="amount" required />
     </div>
 
     <button type="submit">Add Expense</button>
   </form>
   <a href="/" class="back-button">Back to Dashboard</a>
 </div>
-<div class="error-message" ></div>
-
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.querySelector('form');
-        const errorMessageDiv = document.querySelector('.error-message');
 
         form.addEventListener('submit', function(event) {
             const description = document.getElementById('description').value.trim();
@@ -42,37 +38,16 @@
 
             let errorMessage = '';
             if (!description) {
-                errorMessage += 'Please add description ';
+                errorMessage += 'Description is required. ';
             }
             if (!amount) {
-                errorMessage += 'and Amount is required. ';
+                errorMessage += 'Amount is required. ';
             }
 
             if (errorMessage) {
                 event.preventDefault(); // Prevent form from submitting
-                showErrorMessage(errorMessage);
+                alert(errorMessage); // Show an alert box with the error message
             }
         });
-
-     function showErrorMessage(message) {
-    if (errorMessageDiv) {
-        errorMessageDiv.textContent = message;
-        errorMessageDiv.classList.add('error-message-show');
-
-        setTimeout(() => {
-            errorMessageDiv.textContent = ''; // Clear the message
-            errorMessageDiv.classList.remove('error-message-show');
-        }, 5000); // Hide the error message after 5 seconds
-    }
-}
-
-
-        // If there's an error message on page load (from server-side validation), hide it after a timeout
-        if (errorMessageDiv && errorMessageDiv.textContent.trim()) {
-            setTimeout(() => {
-                errorMessageDiv.style.display = 'none';
-            }, 3000);
-        }
     });
 </script>
-

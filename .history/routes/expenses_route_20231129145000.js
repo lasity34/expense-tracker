@@ -4,28 +4,9 @@ function expensesRouter(expenseService) {
     const router = express.Router();
 
     // Dashboard route
-    router.get('/', async (req, res) => {
-        try {
-            const categories = await expenseService.getCategories();
-            const expenses = await expenseService.getAllExpenses();
-            let categoryTotals = {};
-    
-            expenses.forEach(expense => {
-                if (!categoryTotals[expense.category_name]) {
-                    categoryTotals[expense.category_name] = 0;
-                }
-                categoryTotals[expense.category_name] += parseFloat(expense.amount);
-            });
-    
-            const totalAmount = expenses.reduce((total, expense) => total + parseFloat(expense.amount), 0);
-    
-            res.render('dashboard', { categories, categoryTotals, totalAmount });
-        } catch (error) {
-            console.error('Error fetching expenses:', error);
-            res.redirect('/');
-        }
+    router.get('/', (req, res) => {
+        res.render('dashboard');
     });
-    
 
 
 

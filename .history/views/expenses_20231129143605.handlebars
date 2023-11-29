@@ -7,14 +7,12 @@
     <input type="text" name="description" id="description" placeholder="Filter by description" class="description-autocomplete">
 
     <!-- Dropdown for Category -->
-   <div class="category-checkboxes">
-    {{#each categories}}
-        <div class="checkbox-container">
-            <input type="checkbox" name="category" value="{{this.id}}" id="category-{{this.id}}" class="category-checkbox">
-            <label for="category-{{this.id}}">{{this.name}}</label>
-        </div>
-    {{/each}}
-</div>
+    <select name="category" class="category-dropdown">
+        <option value="">All Categories</option>
+        {{#each categories}}
+            <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
 
   
     <!-- Submit Button -->
@@ -49,8 +47,8 @@
 <a href="/" class="back-to-dashboard-btn">Back to Dashboard</a>
 
 </div>
-<div class="total-amount-container">
-    <strong>Total expenses:</strong> <span class="total-amount">R{{ totalAmount }}</span>
+<div class="total-amount">
+    <strong>Total expenses:</strong> R{{ totalAmount }}
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

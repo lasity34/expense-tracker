@@ -91,12 +91,12 @@ button[type="submit"]:hover {
 }
 
 
-/* expenses */
+/* styles.css - add this to your existing CSS file */
 
 .back-button {
     display: inline-block;
     margin-top: 20px;
-    background: #6c757d; 
+    background: #6c757d; /* A gray color, change as needed */
     color: white;
     padding: 10px 15px;
     text-decoration: none;
@@ -105,7 +105,7 @@ button[type="submit"]:hover {
 }
 
 .back-button:hover {
-    background-color: #5a6268; 
+    background-color: #5a6268; /* Slightly darker on hover */
 }
 
 
@@ -184,8 +184,6 @@ button[type="submit"]:hover {
     justify-content: center;
 }
 
-/* total amount expenses */
-
 .total-amount-container {
     background-color: #f2f2f2;
     padding: 10px;
@@ -200,130 +198,30 @@ button[type="submit"]:hover {
     font-size: 1.2em;
 }
 
-/* category checkboxes */
 
-.expenses-filter-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-
-/* Style for Description Autocomplete */
-.description-autocomplete {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensures padding doesn't affect width */
-}
-
-/* Style for Category Checkboxes */
 .category-checkboxes {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 10px; /* Adjust the space between checkboxes */
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    border: 1px solid #ddd; /* Optional border */
+    border-radius: 5px; /* Optional rounded corners */
+    margin-bottom: 20px; /* Space below the checkbox container */
 }
 
 .checkbox-container {
     display: flex;
-    align-items: center;
+    align-items: center; /* Aligns the label and checkbox vertically */
 }
 
 .checkbox-container input[type="checkbox"] {
-    margin-right: 5px;
+    margin-right: 5px; /* Space between checkbox and label */
 }
-/* add expenses error */
+
 
 .error-message {
-    color: white;
-    background-color: red;
+    color: red;
     margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
     display: none; /* Initially hidden */
-    opacity: 0; /* Start with transparent */
-    transition: opacity 0.5s ease-in-out; /* Smooth transition for the opacity */
-    text-align: center;
 }
 
-/* Animation to fade in */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Add this class via JavaScript to show the message */
-.error-message-show {
-    display: block;
-    animation: fadeIn 0.5s ease-in-out;
-    opacity: 1;
-}
-
-/* Expense Summary Section */
-.expense-summary {
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.expense-summary-title {
-    color: #333;
-    font-size: 1.4em;
-    margin-bottom: 15px;
-}
-
-/* Styling the List */
-.expense-summary-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.expense-summary-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    color: #333;
-    font-size: 1em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Total Expenses Style */
-.total-expenses {
-    color: #d35400;
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: right;
-    margin-top: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .expense-summary {
-        padding: 15px;
-    }
-
-    .expense-summary-title {
-        font-size: 1.2em;
-    }
-
-    .expense-summary-item {
-        font-size: 0.9em;
-    }
-
-    .total-expenses {
-        font-size: 1em;
-    }
-}

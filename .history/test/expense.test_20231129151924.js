@@ -160,15 +160,3 @@ describe('getFilteredExpenses', () => {
   });
 
 });
-
-
-describe('getDescriptionsLike', () => {
-  it('should retrieve descriptions matching a search term', async () => {
-      // Add an expense with a unique description
-      await service.addExpense(1, 100.00, 'Special Description');
-
-      const descriptions = await service.getDescriptionsLike('Special');
-      assert(descriptions.some(desc => desc.description === 'Special Description'), "Should match 'Special Description'");
-  });
-});
-
