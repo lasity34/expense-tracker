@@ -63,7 +63,7 @@ describe('Expense Service', function ()  {
     
         // console.log(expenses); 
 
-    const addedExpense = expenses.find(exp => exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
+    const addedExpense = expenses.find( exp => exp.id === category_id &&  exp.amount === amount.toFixed(2) && exp.description.toLowerCase() === description.toLowerCase());
     assert(addedExpense, "Weekly expense should be added");
   });
 
